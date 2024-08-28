@@ -23,38 +23,11 @@ internal class Program
         string csvFile = args[0];
 
 
+        var originalDataLines = DataLine.ReadFromFile(csvFile);
 
-        using var reader = new StreamReader(csvFile, Encoding.UTF8);
-        string? header = reader.ReadLine();
-        if (header is null)
-        {
-            Console.WriteLine("The file is empty.");
-            return;
-        }
+        Console.WriteLine("Read {0} lines from the file.", originalDataLines.Count);
 
-        string? firstDataLine = reader.ReadLine();
-        if (firstDataLine is null)
-        {
-            Console.WriteLine("The file has only the header.");
-            return;
-        }
 
-        //read datalines
-        List<DateLine> dateLines = [];
-        dateLines.Add(DateLine.FromString(firstDataLine!)!.Value);
-        while (!reader.EndOfStream)
-        {
-            string? line = reader.ReadLine();
-            if (line is not null)
-            {
-                DateLine? dateLine = DateLine.FromString(line);
-                dateLines.Add(dateLine!.Value);
-            }
-        }
-
-        Debugger.Break();
     }
+
 }
-
-
-
