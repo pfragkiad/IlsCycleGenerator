@@ -3,6 +3,8 @@ using System.Text;
 
 namespace Ils;
 
+//dotnet publish IlsCycleGenerator.csproj  -p:PublishSingleFile=true --self-contained false -c Release
+
 public static class CycleGenerator
 {
     public static void GenerateCycle(string csvFile)
@@ -16,7 +18,7 @@ public static class CycleGenerator
         var expandedDataLines = ExpandLinesWithTimeStepLargerThan20k(mergedDataLines);
         Console.WriteLine("{0} lines after expanding lines with timestep larger than 20 seconds.", expandedDataLines.Count);
 
-        if(mergedDataLines.Count > 10000) 
+        if(expandedDataLines.Count > 10000) 
             Console.WriteLine("WARNING: The number of lines exceeds 10,000. You should consider changing the source file.");
 
         string fileOutput = GetFileOutFileName(csvFile);
