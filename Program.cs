@@ -11,7 +11,7 @@ internal class Program
     {
 
 #if DEBUG
-        args = [@"d:\Desktop\newconverter\2024-08-27 ILS\20240819_HMC_FCNT_2023_TR_v7.csv"];
+        args = [@"d:\Desktop\newconverter\2024-08-27 ILS\data2.csv"];
 #endif
 
         if (args.Length == 0)
@@ -22,11 +22,7 @@ internal class Program
 
         string csvFile = args[0];
 
-
-        var originalDataLines = DataLine.ReadFromFile(csvFile);
-
-        Console.WriteLine("Read {0} lines from the file.", originalDataLines.Count);
-
+        CycleGenerator.GenerateCycle(csvFile);
 
     }
 
